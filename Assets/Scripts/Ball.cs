@@ -48,4 +48,9 @@ public class Ball : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = dir * speed;
         }
     }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
 }
