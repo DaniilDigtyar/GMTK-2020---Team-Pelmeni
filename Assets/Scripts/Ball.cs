@@ -51,6 +51,6 @@ public class Ball : MonoBehaviour
 
     public void SetSpeed(float newSpeed)
     {
-        speed = newSpeed;
+        speed = speed + newSpeed;
     }
 }
