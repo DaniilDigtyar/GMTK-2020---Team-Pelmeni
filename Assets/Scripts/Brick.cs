@@ -28,6 +28,16 @@ public class Brick : MonoBehaviour
             lifespan--;
         }else if (lifespan == 0)
         {
+            //random number 0-6
+            //switch
+            //case 0 = just destroy brick
+            //case 1 = increase ball speed
+            //case 2 = increase ball number
+            //case 2 = increase paddle size
+            //case 3 = decrease paddle size
+            //case 4 = change colour of bricks
+            //case 5 = rotate screen 90º
+            //case 6 = change brick distribution
             Destroy(this.gameObject);
         }
     }

@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 1
-  BrickDamaged: {fileID: 21300000, guid: fe7c836fad8688146943d7317dd99ac0, type: 3}
+  BrickDamaged: {fileID: 21300000, guid: f32a61d35d4694842b2007f39ab6d56c, type: 3}
