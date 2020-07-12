@@ -9,11 +9,16 @@ public class BallCopy : MonoBehaviour
     //Rigidbody
     public Rigidbody2D ballRB;
 
+    //Audio
+    public AudioClip impact;
+    AudioSource audioSource;
+
     // Use this for initialization
     void Start()
     {
         Globals.Balls++;
         GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
+        audioSource = GetComponent<AudioSource>();
     }
     
     void OnBecameInvisible()
@@ -35,6 +40,8 @@ public class BallCopy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        audioSource.PlayOneShot(impact, 0.15f);
+        
         // Hit the Racket?
         if (col.gameObject.tag == "paddle")
         {

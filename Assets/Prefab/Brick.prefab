@@ -148,4 +148,6 @@ MonoBehaviour:
   colliderBall: {fileID: 3218647132120735322, guid: b5d9e61ef2d95594fb28a8dcb3c5fbf0,
     type: 3}
   ball: {fileID: 5570525014986977554, guid: b5d9e61ef2d95594fb28a8dcb3c5fbf0, type: 3}
+  ballCopy: {fileID: 5570525014986977554, guid: 7bd9d3cadb924564d885aa2cded83e1a,
+    type: 3}
   paddle: {fileID: 862352879877449601, guid: 839fe6d5b861dbd48b589e7c53a4ecac, type: 3}

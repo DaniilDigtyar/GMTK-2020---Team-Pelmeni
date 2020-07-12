@@ -10,10 +10,13 @@ public class Brick : MonoBehaviour
     // Sprites
     public Sprite BrickDamaged;
     private SpriteRenderer renderer;
+
+    
     
     // Ball interaction
     public Ball colliderBall;
     public GameObject ball;
+    public GameObject ballCopy;
 
     // Paddle interaction
     public GameObject paddle;
@@ -25,15 +28,11 @@ public class Brick : MonoBehaviour
     {
         renderer = GetComponent<SpriteRenderer>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-                
-    }
     
     private void OnCollisionEnter2D(Collision2D other)
     {
+        
+
         if (lifespan >= 1)
         {
             renderer.sprite = BrickDamaged;
@@ -43,31 +42,30 @@ public class Brick : MonoBehaviour
         {
             Destroy(this.gameObject);
             
-            switch (Random.Range(2, 4))
+            switch (Random.Range(0, 9))
             {
                 case 0:
                 case 1:
-                    //Increase ball speed by a factor of 1.25
+                    //Increase ball speed
                     increaseBallSpeed();
-                    print("case 1");
+                    changeColour(renderer);
                     break;
                 case 2:
                 case 3:
-                    //Increase number of balls. Adds 1 ball.
+                    //Adds 1 ball.
                     addBall();
-                    print("case 2");
-                    
+                    changeColour(renderer);
                     break;
                 case 4:
                     //Increase Paddle size
                     increasePaddle();
-                    print("case 3");
+                    changeColour(renderer);
                     break;
                 case 5:
                 case 6:
                     //Decrease Paddle size
                     decreasePaddle();
-                    print("case4");
+                    changeColour(renderer);
                     break;
                 case 7:
                 case 8:
@@ -75,22 +73,18 @@ public class Brick : MonoBehaviour
                     changeColour(renderer);
                     break;
             }
-
-            //case 6 = rotate screen 90º
-            //case 7 = billiard bricks
         }
     }
     
     private void increaseBallSpeed()
-    {
+    {//Not working
         colliderBall.SetSpeed(2.0f);
     }
 
     private void addBall()
     {
         GameObject newBall;
-        newBall = Instantiate(ball, transform.position, transform.rotation);
-        //Try to make it appear where the previous brick was
+        newBall = Instantiate(ballCopy, transform.position, transform.rotation);
     }
    
     private void increasePaddle()
@@ -115,7 +109,6 @@ public class Brick : MonoBehaviour
         
         switch (temp)
         {
-            //As of now, does NOT change colours.
             case "White":
                 Color white = new Color(1f, 1f, 1f, 1f);
                 setColour(white);
