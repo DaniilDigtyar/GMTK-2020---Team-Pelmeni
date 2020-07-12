@@ -9,16 +9,21 @@ public class Ball : MonoBehaviour
     //Rigidbody
     public Rigidbody2D ballRB;
 
+    //Audio
+    public AudioClip impact;
+    AudioSource audioSource;
+
     // Use this for initialization
     void Start()
     {
         Globals.Balls++;
         ballRB = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) && ballRB.velocity == new Vector2(0,0))
         {
             ballRB.velocity = Vector2.up * speed;
         }
@@ -43,6 +48,8 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        audioSource.PlayOneShot(impact, 0.25f);
+
         // Hit the Racket?
         if (col.gameObject.tag == "paddle")
         {
