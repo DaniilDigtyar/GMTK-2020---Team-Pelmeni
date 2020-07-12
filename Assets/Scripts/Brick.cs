@@ -7,6 +7,7 @@ public class Brick : MonoBehaviour
     public int lifespan = 1;
     public Sprite BrickDamaged;
     private SpriteRenderer render;
+    public Ball colliderBall;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class Brick : MonoBehaviour
                 
     }
     
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (lifespan >= 1)
         {
@@ -28,17 +29,27 @@ public class Brick : MonoBehaviour
             lifespan--;
         }else if (lifespan == 0)
         {
-            //random number 0-6
-            //switch
-            //case 0 = just destroy brick
-            //case 1 = increase ball speed
+            switch (Random.Range(0, 1))
+            {
+                case 0:
+                    //Just destroy brick
+                    Destroy(this.gameObject);
+                    break;
+                case 1:
+                    //Increase ball speed by a factor of 1.25
+                    
+                    Destroy(other.gameObject);
+                    
+                    //colliderBall = GameObject.FindGameObjectWithTag("Ball");
+                    //colliderBall.SetSpeed(1000.0f);
+                    break;
+            }
             //case 2 = increase ball number
             //case 2 = increase paddle size
             //case 3 = decrease paddle size
             //case 4 = change colour of bricks
             //case 5 = rotate screen 90º
             //case 6 = change brick distribution
-            Destroy(this.gameObject);
         }
     }
 }
