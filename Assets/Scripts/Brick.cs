@@ -89,7 +89,7 @@ public class Brick : MonoBehaviour
     private void addBall()
     {
         GameObject newBall;
-        newBall = Instantiate(ball, transform.position, transform.rotation);
+        newBall = Instantiate(ballCopy, transform.position, transform.rotation);
         //Try to make it appear where the previous brick was
     }
    
