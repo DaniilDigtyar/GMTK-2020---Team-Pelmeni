@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ball : MonoBehaviour
+public class BallCopy : MonoBehaviour
 {
     // Movement Speed
     public float speed = 100.0f;
@@ -13,15 +13,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         Globals.Balls++;
-        ballRB = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            ballRB.velocity = Vector2.up * speed;
-        }
+        GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
     }
     
     void OnBecameInvisible()

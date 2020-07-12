@@ -9,7 +9,7 @@ public class Brick : MonoBehaviour
     
     // Sprites
     public Sprite BrickDamaged;
-    private SpriteRenderer render;
+    private SpriteRenderer renderer;
     
     // Ball interaction
     public Ball colliderBall;
@@ -23,7 +23,7 @@ public class Brick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        render = GetComponent<SpriteRenderer>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,50 +36,46 @@ public class Brick : MonoBehaviour
     {
         if (lifespan >= 1)
         {
-            render.sprite = BrickDamaged;
+            renderer.sprite = BrickDamaged;
             lifespan--;
+
         }else if (lifespan == 0)
         {
-            switch (Random.Range(0, 2))
+            Destroy(this.gameObject);
+            
+            switch (Random.Range(2, 4))
             {
                 case 0:
-                    //Just destroy brick
-                    //1/10
-                    Destroy(this.gameObject);
-                    print("case 0");
-                    break;
                 case 1:
                     //Increase ball speed by a factor of 1.25
-                    //2
-                    Destroy(this.gameObject);
                     increaseBallSpeed();
                     print("case 1");
                     break;
                 case 2:
+                case 3:
                     //Increase number of balls. Adds 1 ball.
-                    //2
-                    Destroy(this.gameObject);
                     addBall();
                     print("case 2");
                     
                     break;
-                case 3:
+                case 4:
                     //Increase Paddle size
-                    //1
-                    Destroy(this.gameObject);
                     increasePaddle();
                     print("case 3");
                     break;
-                case 4:
+                case 5:
+                case 6:
                     //Decrease Paddle size
-                    //3
-                    Destroy(this.gameObject);
                     decreasePaddle();
                     print("case4");
                     break;
+                case 7:
+                case 8:
+                    //Change Brick Colour
+                    changeColour(renderer);
+                    break;
             }
 
-            //case 5 = change colour of bricks
             //case 6 = rotate screen 90º
             //case 7 = billiard bricks
         }
@@ -87,13 +83,14 @@ public class Brick : MonoBehaviour
     
     private void increaseBallSpeed()
     {
-        colliderBall.SetSpeed(10.0f);
+        colliderBall.SetSpeed(2.0f);
     }
 
     private void addBall()
     {
         GameObject newBall;
-        newBall = Instantiate(ball, transform.position, transform.rotation); //Try to make it appear where the previous brick was
+        newBall = Instantiate(ball, transform.position, transform.rotation);
+        //Try to make it appear where the previous brick was
     }
    
     private void increasePaddle()
@@ -105,10 +102,62 @@ public class Brick : MonoBehaviour
     private void decreasePaddle()
     {
         paddle = GameObject.Find("Paddle");
-        if (paddle.transform.localScale.x >= 1)
+        if (paddle.transform.localScale.x >= 0.3)
         {
             paddle.transform.localScale -= scaleChange;
         }
+    }
+
+    public void changeColour (SpriteRenderer renderer)
+    {
+        List<string> colourList = new List<string> { "White", "Yellow", "Orange", "Pink", "Purple", "DarkBlue", "LightBlue", "Green" };
+        string temp = colourList[Random.Range(0, (colourList.Count))];
+        
+        switch (temp)
+        {
+            //As of now, does NOT change colours.
+            case "White":
+                Color white = new Color(1f, 1f, 1f, 1f);
+                setColour(white);
+                break;
+            case "Yellow":
+                Color yellow = new Color(1f, 0.92f, 0.016f, 1f);
+                setColour(yellow);
+                break;
+            case "Orange":
+                Color orange = new Color(1f, 0.5686275f, 0f, 1f);
+                setColour(orange);
+                break;
+            case "Pink":
+                Color pink = new Color(0.8470589f, 0.1058824f, 0.3764706f, 1f);
+                setColour(pink);
+                break;
+            case "Purple":
+                Color purple = new Color(0.482353f, 0.1215686f, 0.6352941f, 1f);
+                setColour(purple);
+                break;
+            case "DarkBlue":
+                Color darkBlue = new Color(0.2235294f, 0.2862745f, 0.6705883f, 1f);
+                setColour(darkBlue); 
+                break;
+            case "LightBlue":
+                Color lightBlue = new Color(0.1647059f, 0.6078432f, 0.8980393f, 1f);
+                setColour(lightBlue);
+                break;
+            case "Green":
+                Color green = new Color(0.4862745f, 0.7019608f, 0.2588235f, 1f);
+                setColour( green);
+                break;
+        }
+    }
+
+    private void setColour (Color colour)
+    {
+        foreach (GameObject Brick in GameObject.FindGameObjectsWithTag("brick"))
+        {
+            Brick.GetComponent<Renderer>().material.color = colour;
+        }
+        print(name);
     }
 }
  

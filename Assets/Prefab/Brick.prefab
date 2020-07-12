@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e777765721472824a89e8e684a9230c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0b4d0754ee9bee54fa66ced47c9bdf8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 1
-  BrickDamaged: {fileID: 21300000, guid: f32a61d35d4694842b2007f39ab6d56c, type: 3}
+  BrickDamaged: {fileID: 21300000, guid: 40cbdf846ef773b4293e67c06793f239, type: 3}
   colliderBall: {fileID: 3218647132120735322, guid: b5d9e61ef2d95594fb28a8dcb3c5fbf0,
     type: 3}
   ball: {fileID: 5570525014986977554, guid: b5d9e61ef2d95594fb28a8dcb3c5fbf0, type: 3}
