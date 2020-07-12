@@ -27,6 +27,7 @@ public class Brick : MonoBehaviour
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
+        Globals.Bricks++;
     }
     
     private void OnCollisionEnter2D(Collision2D other)
@@ -41,6 +42,7 @@ public class Brick : MonoBehaviour
         }else if (lifespan == 0)
         {
             Destroy(this.gameObject);
+            Globals.Bricks--;
             
             switch (Random.Range(0, 9))
             {

@@ -18,5 +18,10 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("Lose");
         }
+
+        if(Globals.Bricks == 0)
+        {
+            SceneManager.LoadScene("Not Lose");
+        }
     }
 }
