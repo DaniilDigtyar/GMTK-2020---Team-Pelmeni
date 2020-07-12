@@ -14,6 +14,7 @@ public class Brick : MonoBehaviour
     // Ball interaction
     public Ball colliderBall;
     public GameObject ball;
+    public GameObject ballCopy;
 
     // Paddle interaction
     public GameObject paddle;
@@ -43,31 +44,30 @@ public class Brick : MonoBehaviour
         {
             Destroy(this.gameObject);
             
-            switch (Random.Range(2, 4))
+            switch (Random.Range(0, 9))
             {
                 case 0:
                 case 1:
                     //Increase ball speed by a factor of 1.25
                     increaseBallSpeed();
-                    print("case 1");
+                    changeColour(renderer);
                     break;
                 case 2:
                 case 3:
                     //Increase number of balls. Adds 1 ball.
                     addBall();
-                    print("case 2");
-                    
+                    changeColour(renderer);
                     break;
                 case 4:
                     //Increase Paddle size
                     increasePaddle();
-                    print("case 3");
+                    changeColour(renderer);
                     break;
                 case 5:
                 case 6:
                     //Decrease Paddle size
                     decreasePaddle();
-                    print("case4");
+                    changeColour(renderer);
                     break;
                 case 7:
                 case 8:
